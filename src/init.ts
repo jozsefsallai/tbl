@@ -21,6 +21,5 @@ function initCharacters(chars: TableCharacters = {}): TableCharacters {
 }
 
 export {
-  initCharacters,
-  TableCharacters
+  initCharacters
 };

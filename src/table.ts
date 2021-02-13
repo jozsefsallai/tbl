@@ -1,5 +1,5 @@
 import { initCharacters } from './init.ts';
-import Renderer from './render.ts';
+import Renderer, { GenericType, GenericObject } from './render.ts';
 import { truncateTable, TruncatedTable } from '../utils/truncate.ts';
 
 export interface TableCharacters {
@@ -19,7 +19,7 @@ export interface TableCharacters {
 }
 
 export interface TableOptions {
-  header?: any[];
+  header?: GenericType[];
   widths?: number[];
   chars?: TableCharacters;
 }
@@ -37,28 +37,24 @@ export class Table extends Array {
     this.options.chars = opts?.chars
       ? initCharacters(opts.chars)
       : initCharacters();
-
-    if (opts?.widths?.length) {
-
-    }
   }
 
-  fromObjects(arr: any[]): Table {
+  fromObjects(arr: GenericObject[]): Table {
     if (!this.options.header?.length) {
       throw new Error(`Table.fromObjects requires that you have the "headers" option set up.`);
     }
 
-    const rows: any[][] = [];
+    const rows: GenericType[][] = [];
 
     arr.forEach(row => {
       if (Object.keys(row).length < 1) {
         return;
       }
 
-      const current: any[] = [];
+      const current: GenericType[] = [];
 
       this.options.header?.forEach(cell => {
-        current.push(row[cell] || '');
+        current.push(row[String(cell)] || '');
       });
 
       rows.push(current);
@@ -74,7 +70,7 @@ export class Table extends Array {
       return '';
     }
 
-    let items = this as any[][];
+    let items = this as GenericType[][];
     let truncatedTable: TruncatedTable | undefined;
     let truncatedHeader: TruncatedTable | undefined;
 

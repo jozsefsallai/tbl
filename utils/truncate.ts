@@ -1,3 +1,5 @@
+import { GenericType } from '../src/render.ts';
+
 export interface TruncatedTable {
   table: string[][];
   renderBorders: boolean[];
@@ -36,7 +38,7 @@ export function truncate(str: string, len: number): string[] {
   return output;
 }
 
-export function truncateTable(table: any[][], widths: number[]): TruncatedTable {
+export function truncateTable(table: GenericType[][], widths: number[]): TruncatedTable {
   const truncatedTable: TruncatedTable = {
     table: [],
     renderBorders: []

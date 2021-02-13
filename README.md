@@ -69,7 +69,7 @@ const languages = new Table({
 ```ts
 const users = [
   { name: 'Joe', age: 19, occupation: 'Software Engineer' },
-  { name: 'Niko', age: '?', occupation: 'Not a cat' }
+  { name: 'Niko', age: '?', occupation: 'Not a cat' },
   { name: 'Ryan Dahl', age: 39, occupation: 'Software Engineer' }
 ];
 

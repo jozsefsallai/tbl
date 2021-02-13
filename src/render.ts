@@ -1,17 +1,21 @@
-import { TableCharacters } from './init.ts';
+import { TableCharacters } from './table.ts';
 import iro, { bold } from 'https://deno.land/x/iro@1.0.1/src/iro.ts';
-import { truncateTable } from '../utils/truncate.ts';
+
+export type GenericType = string | number | boolean;
+export interface GenericObject {
+  [key: string]: GenericType;
+}
 
 interface RendererOpts {
-  items: any[][];
-  header?: any[];
+  items: GenericType[][];
+  header?: GenericType[];
   widths?: number[];
   characters?: TableCharacters;
 }
 
 class Renderer {
-  private header: any[];
-  private items: any[][];
+  private header: GenericType[];
+  private items: GenericType[][];
   private characters: TableCharacters;
 
   private count: number;
@@ -74,8 +78,12 @@ class Renderer {
     return str;
   }
 
-  public renderRow(row: any[], isHeader: boolean = false, renderVerticalSeparator: boolean = true): string {
+  public renderRow(row: GenericType[], isHeader?: boolean, renderVerticalSeparator?: boolean): string {
     let str = '' + this.characters.left;
+
+    if (typeof renderVerticalSeparator === 'undefined') {
+      renderVerticalSeparator = true;
+    }
 
     str += row
       .slice(0, this.count)

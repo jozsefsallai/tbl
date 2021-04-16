@@ -20,6 +20,6 @@ function initCharacters(chars: TableCharacters = {}): TableCharacters {
   return characters;
 }
 
-export {
+export type {
   initCharacters
 };

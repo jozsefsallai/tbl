@@ -1,6 +1,6 @@
 import { TableCharacters } from './table.ts';
 
-function initCharacters(chars: TableCharacters = {}): TableCharacters {
+export function initCharacters(chars: TableCharacters = {}): TableCharacters {
   const characters: TableCharacters = {};
 
   characters.middleMiddle = chars.middleMiddle || '─';
@@ -19,7 +19,3 @@ function initCharacters(chars: TableCharacters = {}): TableCharacters {
 
   return characters;
 }
-
-export type {
-  initCharacters
-};
